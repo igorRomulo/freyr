@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/igorRomulo/freyr/issues"
   },
-  "homepage": "https://github.com/igorRomulo/freyr#readme"
+  "homepage": "https://github.com/igorRomulo/freyr#readme",
+  "devDependencies": {
+    "git-commit-msg-linter": "^4.1.3"
+  }
 }
