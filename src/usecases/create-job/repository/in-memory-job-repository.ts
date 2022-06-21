@@ -8,19 +8,35 @@ export class InMemoryJobRepository implements JobRepository {
     this.repository = repository
   }
 
-  add (job: JobData): Promise<void> {
-    throw new Error('Method not implemented.')
+  async add (job: JobData): Promise<void> {
+    const exists = await this.exists(job)
+
+    if (!exists) {
+      this.repository.push(job)
+    }
   }
 
-  findJobByName (jobName: string): Promise<JobData> {
+  async findJobByName (name: string): Promise<JobData> {
+    const jobs = this.repository.filter((job) => {
+      return job.name === name
+    })
+
+    if (jobs.length > 0) {
+      return jobs[0]
+    }
+
     return null
   }
 
-  findAllJobs (): Promise<JobData[]> {
+  async findAllJobs (): Promise<JobData[]> {
     throw new Error('Method not implemented.')
   }
 
-  exists (job: JobData): Promise<boolean> {
-    throw new Error('Method not implemented.')
+  async exists (job: JobData): Promise<boolean> {
+    if (await this.findJobByName(job.name) === null) {
+      return false
+    }
+
+    return true
   }
 }
