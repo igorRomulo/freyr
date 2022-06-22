@@ -17,15 +17,9 @@ export class InMemoryJobRepository implements JobRepository {
   }
 
   async findJobByName (name: string): Promise<JobData> {
-    const jobs = this.repository.filter((job) => {
-      return job.name === name
-    })
+    const found = this.repository.find(job => job.name === name)
 
-    if (jobs.length > 0) {
-      return jobs[0]
-    }
-
-    return null
+    return found || null
   }
 
   async findAllJobs (): Promise<JobData[]> {
