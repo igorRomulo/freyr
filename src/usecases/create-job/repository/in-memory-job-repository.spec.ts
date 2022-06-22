@@ -27,4 +27,19 @@ describe('In memory Job Repository', () => {
     // then
     expect(job.name).toBe(name)
   })
+
+  test('should return all job in the repository', async () => {
+    // given
+    const jobs: JobData[] = [
+      { name: 'any_job_name' },
+      { name: 'any_job_name' }
+    ]
+    const jobRepo = new InMemoryJobRepository(jobs)
+
+    // when
+    const job = await jobRepo.findAllJobs()
+
+    // then
+    expect((await job).length).toBe(2)
+  })
 })
