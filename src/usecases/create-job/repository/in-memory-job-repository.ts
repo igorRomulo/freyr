@@ -29,7 +29,7 @@ export class InMemoryJobRepository implements JobRepository {
   }
 
   async findAllJobs (): Promise<JobData[]> {
-    throw new Error('Method not implemented.')
+    return this.repository
   }
 
   async exists (job: JobData): Promise<boolean> {
