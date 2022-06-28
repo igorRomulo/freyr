@@ -5,6 +5,7 @@ export class Email {
     }
 
     const [local, domain] = email.split('@')
+
     const localPartTotalOfChars = 64
     const domainTotalOfChars = 255
     const totalCharsEmail = 320
@@ -18,6 +19,14 @@ export class Email {
     }
 
     if (local.length > localPartTotalOfChars || local.length === 0) {
+      return false
+    }
+
+    const domainParts = domain.split('.')
+    const domainPartsTotalOfChars = 63
+    const domainPartLargerThanMaxChars = domainParts.some((part) => part.length > domainPartsTotalOfChars)
+
+    if (domainPartLargerThanMaxChars) {
       return false
     }
 
