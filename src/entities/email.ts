@@ -13,7 +13,7 @@ export class Email {
       return false
     }
 
-    if (domain.length > domainTotalOfChars) {
+    if (domain.length > domainTotalOfChars || domain.length === 0) {
       return false
     }
 
