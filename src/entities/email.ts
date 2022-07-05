@@ -1,11 +1,17 @@
 export class Email {
   static validate (email: string): boolean {
+    const emailRegex =
+      /^[-!#$%&'*+/0-9=?A-Z^_a-z`{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/
+
     if (!email) {
       return false
     }
 
-    const [local, domain] = email.split('@')
+    if (!emailRegex.test(email)) {
+      return false
+    }
 
+    const [local, domain] = email.split('@')
     const localPartTotalOfChars = 64
     const domainTotalOfChars = 255
     const totalCharsEmail = 320
